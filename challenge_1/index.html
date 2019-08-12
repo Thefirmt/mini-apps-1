@@ -1,2 +1,26 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TIC TAC TOE</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <script src="build/bundle.js"></script>
+        <div className="board">
+            <div className="row" id="top-row"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            <div className="divider" id="upper-divide">-------------</div>
+            <div className="row" id="mid-row"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            <div className="divider" id="lower-divide">-------------</div>
+            <div className="row" id="bot-row"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            <script type="text/javascript">
+                var allblanks = document.getElementsByClassName('blank')
+                for (var i = 0; i < allblanks.length; i++) {
+                    allblanks[i].onclick = function(event) {
+                        event.target.innerText = "\xa0\xa0x\xa0\xa0"
+                    }
+                };
+            </script>
+        </div>
+    </body>
+</html>
 
