@@ -15,13 +15,15 @@
                 <!-- <div class="divider" id="lower-divide"></div> -->
                 <div class="row" id="bot-row"><span class="blank" id="r3c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r3c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r3c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
                 <button id="reset">reset</button>
+                <button id="rotate">rotate</button>
                 <script type="text/javascript">
                 var turns = 1;
                 var xWins = 0;
                 var oWins = 0;
                 var xPicks = [];
                 var oPicks = [];
-                    var allblanks = document.getElementsByClassName('blank');
+                var rotateMode = false;
+                var allblanks = document.getElementsByClassName('blank');
                     for (var i = 0; i < allblanks.length; i++) {
                         allblanks[i].onclick = function(event) {
                             if ( turns % 2 === 0) {
@@ -45,7 +47,9 @@
                             };
                         };
                     };
+
                 var winningCombos = [['r1c1','r1c2','r1c3'], ['r2c1','r2c2','r2c3'], ['r3c1','r3c2','r3c3'], ['r1c1','r2c2','r3c3'], ['r1c3','r2c2','r3c1'], ['r1c1','r2c1','r3c1'], ['r1c2','r2c2','r3c2'], ['r1c3','r2c3','r3c3']]
+                
                 var didWon = (playerArr) => {
                     var endMatch = false
                     for (var i =0; i < winningCombos.length; i++) { //loops each possible win condition
@@ -61,19 +65,76 @@
                     }
                     return endMatch;
                 }
+
                 var updateScore = () => {
                     document.getElementById('score-board').innerText = `x ${xWins}   ${oWins} o`;
                 }
+
                 var resetBoard = () => {
                     xPicks = [];
-                    oPicks = [];
-                    var resetAll = document.getElementsByClassName('blank');
-                    for (var i = 0; i < resetAll.length; i++) {
-                        resetAll[i].innerText = '\xa0\xa0\xa0\xa0\xa0';
+                    oPicks = [];;
+                    for (var i = 0; i < allblanks.length; i++) {
+                        allblanks[i].innerText = '\xa0\xa0\xa0\xa0\xa0';
                         };
                 };
+
                 var resButton = document.getElementById('reset');
-                resButton.onclick = function() {resetBoard();}
+                resButton.onclick = function() {resetBoard();};
+                var rotateButton = document.getElementById('rotate');
+                rotateButton.onclick = function() {rotateBoard(xPicks, oPicks);};
+
+                var rotateBoard = (currArrx, currArro) => {
+                    //right a function that translates all pos to 90degree positions.
+                    var newX = eleReplace(currArrx);
+                    var newO = eleReplace(currArro);                    
+                    //wipe the board
+                    resetBoard();
+                    //set inner html for all the replaced coords back on the board
+                    xPicks = newX;
+                    oPicks = newO;
+                    xPicks.forEach(function(ele) {
+                        document.getElementById(ele).innerText = "\xa0\xa0x\xa0\xa0"
+                    })
+                    oPicks.forEach(function(ele) {
+                        document.getElementById(ele).innerText = "\xa0\xa0o\xa0\xa0"
+                    })
+                }
+
+                var eleReplace = (origArr) => {
+                    var arrToSwap = [];
+                    console.log('Original: ', origArr)
+                    origArr.forEach(function(ele) {
+                        if (ele.includes('r1c1')) {
+                            arrToSwap.push('r1c3');
+                        }
+                        if (ele.includes('r1c2')) {
+                            arrToSwap.push('r2c3');
+                        }
+                        if (ele.includes('r1c3')) {
+                            arrToSwap.push('r3c3');
+                        }
+                        if (ele.includes('r2c1')) {
+                            arrToSwap.push('r1c2');
+                        }
+                        if (ele.includes('r2c2')) {
+                            arrToSwap.push('r2c2');
+                        }
+                        if (ele.includes('r2c3')) {
+                            arrToSwap.push('r3c2');
+                        }
+                        if (ele.includes('r3c1')) {
+                            arrToSwap.push('r1c1');
+                        }
+                        if (ele.includes('r3c2')) {
+                            arrToSwap.push('r2c1');
+                        }
+                        if (ele.includes('r3c3')) {
+                            arrToSwap.push('r3c1');
+                        }
+                    });
+                    console.log('after: ', arrToSwap)
+                    return arrToSwap;
+                }
                 </script>
             </div>
         </div>
