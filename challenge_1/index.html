@@ -13,10 +13,17 @@
             <div className="divider" id="lower-divide">-------------</div>
             <div className="row" id="bot-row"><span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
             <script type="text/javascript">
+            var turns = 1
                 var allblanks = document.getElementsByClassName('blank')
                 for (var i = 0; i < allblanks.length; i++) {
                     allblanks[i].onclick = function(event) {
-                        event.target.innerText = "\xa0\xa0x\xa0\xa0"
+                        if ( turns % 2 === 0) {
+                            event.target.innerText = "\xa0\xa0o\xa0\xa0"
+                            turns++;
+                        } else {
+                            event.target.innerText = "\xa0\xa0x\xa0\xa0"
+                            turns++;
+                        }
                     }
                 };
             </script>
