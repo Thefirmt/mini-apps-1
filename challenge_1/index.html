@@ -5,15 +5,15 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div>
+        <div class="all">
             <script src="build/bundle.js"></script>
             <div id="score-board">x 0  0 o</div>
-            <div className="board">
-                <div className="row" id="top-row"><span class="blank" id="r1c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r1c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r1c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
-                <div className="divider" id="upper-divide">-------------</div>
-                <div className="row" id="mid-row"><span class="blank" id="r2c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r2c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r2c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
-                <div className="divider" id="lower-divide">-------------</div>
-                <div className="row" id="bot-row"><span class="blank" id="r3c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r3c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>|<span class="blank" id="r3c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            <div class="board">
+                <div class="row" id="top-row"><span class="blank" id="r1c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r1c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r1c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                <!-- <div class="divider" id="upper-divide"></div> -->
+                <div class="row" id="mid-row"><span class="blank" id="r2c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r2c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r2c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                <!-- <div class="divider" id="lower-divide"></div> -->
+                <div class="row" id="bot-row"><span class="blank" id="r3c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r3c2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="blank" id="r3c3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
                 <button id="reset">reset</button>
                 <script type="text/javascript">
                 var turns = 1;
@@ -29,6 +29,7 @@
                                 oPicks.push(event.target.id)
                                 if (didWon(oPicks)) {
                                     oWins++
+                                    turns = 1
                                     updateScore();
                                 }
                                 turns++;
@@ -37,6 +38,7 @@
                                 xPicks.push(event.target.id)
                                 if (didWon(xPicks)) {
                                     xWins++
+                                    turns = 0
                                     updateScore();
                                 }
                                 turns++;
@@ -63,7 +65,6 @@
                     document.getElementById('score-board').innerText = `x ${xWins}   ${oWins} o`;
                 }
                 var resetBoard = () => {
-                    turns = 1;
                     xPicks = [];
                     oPicks = [];
                     var resetAll = document.getElementsByClassName('blank');
