@@ -1,0 +1,14 @@
+{
+  "name": "challenge_2",
+  "version": "1.0.0",
+  "description": "Mini app 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
