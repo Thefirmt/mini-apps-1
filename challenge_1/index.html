@@ -17,6 +17,7 @@
                 <button id="reset">reset</button>
                 <button id="rotate">rotate</button>
                 <script type="text/javascript">
+                var pleaseWork = this;
                 var turns = 1;
                 var xWins = 0;
                 var oWins = 0;
@@ -34,6 +35,9 @@
                                     turns = 1
                                     updateScore();
                                 }
+                                if(rotateMode) {
+                                    rotateBoard(xPicks, oPicks)
+                                }
                                 turns++;
                             } else {
                                 event.target.innerText = "\xa0\xa0x\xa0\xa0"
@@ -42,6 +46,9 @@
                                     xWins++
                                     turns = 0
                                     updateScore();
+                                }
+                                if (rotateMode) {
+                                    rotateBoard(xPicks, oPicks)
                                 }
                                 turns++;
                             };
@@ -81,7 +88,9 @@
                 var resButton = document.getElementById('reset');
                 resButton.onclick = function() {resetBoard();};
                 var rotateButton = document.getElementById('rotate');
-                rotateButton.onclick = function() {rotateBoard(xPicks, oPicks);};
+                rotateButton.onclick = function() {
+                    rotateMode = !rotateMode;
+                }
 
                 var rotateBoard = (currArrx, currArro) => {
                     //right a function that translates all pos to 90degree positions.
@@ -94,15 +103,16 @@
                     oPicks = newO;
                     xPicks.forEach(function(ele) {
                         document.getElementById(ele).innerText = "\xa0\xa0x\xa0\xa0"
+                        // checkBelow(ele);
                     })
                     oPicks.forEach(function(ele) {
                         document.getElementById(ele).innerText = "\xa0\xa0o\xa0\xa0"
+                        // checkBelow(ele);
                     })
                 }
 
                 var eleReplace = (origArr) => {
                     var arrToSwap = [];
-                    console.log('Original: ', origArr)
                     origArr.forEach(function(ele) {
                         if (ele.includes('r1c1')) {
                             arrToSwap.push('r1c3');
@@ -132,8 +142,22 @@
                             arrToSwap.push('r3c1');
                         }
                     });
-                    console.log('after: ', arrToSwap)
                     return arrToSwap;
+                }
+
+                var checkBelow = (ele) => {
+                    var row = ele[1];
+                    if (row === 3) {
+                        return;
+                    }
+                    var currentRow = ele;
+                    var upOne = Number(row) + 1;
+                    var nextPos = ele.replace(row, upOne.toString());
+                    if (document.getElementById(nextPos).innerText = '\xa0\xa0\xa0\xa0\xa0') {
+                        document.getElementById(nextPos).innerText = document.getElementById(currentRow).innerText;
+                        document.getElementById(currentRow).innerText = '\xa0\xa0\xa0\xa0\xa0';
+                        checkBelow(nextPos);
+                    }
                 }
                 </script>
             </div>
