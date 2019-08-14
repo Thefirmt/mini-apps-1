@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const js = require('./client/app.js')
 
 app.use(express.static(__dirname + 'client'));
 app.use(express.urlencoded());
@@ -10,8 +11,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) =>{
-    console.log(JSON.stringify(req.body.data));
+    var data = JSON.stringify(req.body.data);
+    var parsie = JSON.parse(data);
     res.sendFile(__dirname + '/client' + '/index.html')
 })
+
 
 app.listen(port, () => {console.log(`Server is running on port ${port}!`)});

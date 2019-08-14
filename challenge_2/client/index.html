@@ -4,8 +4,15 @@
 </head>
 <body>
     <form action="/" method="post">
-        <input type="text" name="data" >
+        <textarea type="text" name="data" ></textarea>
         <input type="submit" value="submit" />
     </form>
+    <div id="output"></div>
+    <script src="../node_modules/ejs/ejs.min.js"></script>
+    <script>
+            html = ejs.render('<%= feedback %>', {feedback: "butts"});
+            // Vanilla JS:
+            document.getElementById('output').innerHTML = html;
+    </script>
     <source type="text/javascript" src="./app.js" >
 </body>
