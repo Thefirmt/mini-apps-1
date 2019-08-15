@@ -29,12 +29,20 @@ class App extends React.Component {
         var phone = document.getElementById("phone-field").value
     }
 
+    grabF3() {
+        var cc = document.getElementById("cc-field").value
+        var expiry = document.getElementById("exp-field").value
+        var cvv = document.getElementById("cvv-field").value
+        var billing = document.getElementById("bzc-field").value
+    }
+
     render() {
         return (
             <div>
                 <h1> BUY SOMETHING </h1>
                 <F1 grabF1={this.grabF1} />
                 <F2 grabF2={this.grabF2} />
+                <F3 grabF3={this.grabF3} />
             </div>
         )
     }
@@ -67,7 +75,7 @@ const F3 = (props) => (
         Expiry Date:<input type="text" id="exp-field" />
         CVV:<input type="text" id="cvv-field" />
         Billing Zip Code:<input type="text" id="bzc-field" />
-        <button id="checkout" onClick={(event) => {props.grabF3()}}>Next</button>
+        <button id="next3" onClick={(event) => {props.grabF3()}}>Next</button>
     </div>
 );
 
