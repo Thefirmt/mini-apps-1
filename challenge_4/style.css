@@ -1,0 +1,37 @@
+.col {
+    display: inline-block;
+}
+.gameboard {
+    display: inline-block;
+}
+ 
+.square  { 
+    background-color: white;
+    border: 1px solid black;
+    margin: 5px;
+    height: 100px;
+    width: 100px
+}
+
+.orange  { 
+    background-color: orange;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px
+}
+
+.blue { 
+    background-color: blue;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px
+}
+
+.drop {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid green;
+    margin: auto;
+  }
