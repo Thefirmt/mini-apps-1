@@ -15,14 +15,16 @@
 
 .orange  { 
     background-color: orange;
-    border: 1px solid black;
+    border-radius: 50px;
+    margin: 5px;
     height: 100px;
     width: 100px
 }
 
 .blue { 
     background-color: blue;
-    border: 1px solid black;
+    border-radius: 50px;
+    margin: 5px;
     height: 100px;
     width: 100px
 }
@@ -34,4 +36,11 @@
     border-right: 20px solid transparent;
     border-top: 20px solid green;
     margin: auto;
+  }
+
+  #win {
+      text-align: center;
+      font-style: oblique;
+      font-size: 300%;
+      font-family: Arial, Helvetica, sans-serif;
   }
